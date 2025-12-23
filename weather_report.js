@@ -1,32 +1,51 @@
-function showweatherDetails(event) {
-  event.preventDefault();
+// weather_report.js
 
-  const city = document.getElementById("city").value;
-  const apiKey = "c4f86ece00bc8aa272652ac9065af12d";
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+document.addEventListener("DOMContentLoaded", function () {
+  const weatherForm = document.getElementById("weatherForm");
+  const cityInput = document.getElementById("city");
+  const weatherInfo = document.getElementById("weatherInfo");
 
-  fetch(apiUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("City not found or API error");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const weatherInfo = document.getElementById("weatherInfo");
-      weatherInfo.innerHTML = `
-        <h2>Weather in ${data.name}</h2>
-        <p>Temperature: ${data.main.temp} &#8451;</p>
-        <p>Weather: ${data.weather[0].description}</p>
-      `;
-    })
-    .catch((error) => {
-      console.error("Error fetching weather:", error);
-      const weatherInfo = document.getElementById("weatherInfo");
-      weatherInfo.innerHTML = `<p>Failed to fetch weather. Please try again.</p>`;
-    });
-}
+  const apiKey = "c4f86ece00bc8aa272652ac9065af12d"; // Your OpenWeather API key
 
-document
-  .getElementById("weatherForm")
-  .addEventListener("submit", showweatherDetails);
+  function showWeatherDetails(event) {
+    event.preventDefault();
+
+    const city = cityInput.value.trim();
+
+    if (city === "") {
+      weatherInfo.innerHTML = "<p class='error'>Please enter a city name.</p>";
+      return;
+    }
+
+    weatherInfo.innerHTML = "<p class='loading'>Fetching weather data...</p>";
+
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+      city
+    )}&appid=${apiKey}&units=metric`;
+
+    fetch(apiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("City not found");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        weatherInfo.innerHTML = `
+          <div class="weather-card">
+            <h2>${data.name}, ${data.sys.country}</h2>
+            <p class="temp">${Math.round(data.main.temp)}°C</p>
+            <p class="desc">${data.weather[0].description}</p>
+            <p class="details">Humidity: ${data.main.humidity}%</p>
+            <p class="details">Wind: ${data.wind.speed} m/s</p>
+          </div>
+        `;
+      })
+      .catch(() => {
+        weatherInfo.innerHTML =
+          "<p class='error'>Unable to retrieve weather data. Please check the city name.</p>";
+      });
+  }
+
+  weatherForm.addEventListener("submit", showWeatherDetails);
+});

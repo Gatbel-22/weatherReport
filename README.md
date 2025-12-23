@@ -5,10 +5,10 @@ A simple, responsive, and user-friendly web application that displays real-time 
 ---
 
 ## 🚀 Live Demo
+
 Once deployed on GitHub Pages, access the app at:
 
 https://<your-username>.github.io/<repository-name>/weather_report.html
-
 
 ---
 
@@ -58,6 +58,7 @@ weather-report-app/
 This project uses the **OpenWeather API**.
 
 ### To use your own API key:
+
 1. Sign up at: https://openweathermap.org/
 2. Generate an API key.
 3. Open `weather_report.js`.
@@ -65,3 +66,4 @@ This project uses the **OpenWeather API**.
 
 ```javascript
 const apiKey = "YOUR_API_KEY_HERE";
+```
