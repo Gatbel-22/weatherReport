@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daily Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./weather_report.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Daily Weather</h1>
+
+      <form id="weatherForm" class="weather-form">
+        <input
+          type="text"
+          id="city"
+          name="city"
+          placeholder="Enter city name"
+          autocomplete="off"
+        />
+        <button type="submit">Get Weather</button>
+      </form>
+
+      <div id="weatherInfo"></div>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="./weather_report.js"></script>
+  </body>
+</html>
