@@ -8,8 +8,7 @@ A simple, responsive, and user-friendly web application that displays real-time 
 
 Once deployed on GitHub Pages, access the app at:
 
-https://<your-username>.github.io/<repository-name>/weather_report.html
-
+https://gatbel-22.github.io/weatherReport/
 ---
 
 ## 📌 Features
@@ -37,7 +36,7 @@ https://<your-username>.github.io/<repository-name>/weather_report.html
 
 weather-report-app/
 │
-├── weather_report.html
+├── index.html
 ├── weather_report.css
 ├── weather_report.js
 └── README.md
